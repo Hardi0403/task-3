@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <h2>{{ question.question_text }}</h2>
+            {% for option in question.option_set.all %}
+                <input type="radio" name="{{ question.id }}" value="{{ option.id }}">
+                <label>{{ option.option_text }}</label><br>
+            {% endfor %}
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
